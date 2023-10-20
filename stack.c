@@ -20,7 +20,8 @@ void push(Stack *stack, int value) {
         printf("Stack is full. Cannot push %d.\n", value);
         return;
     }
-    stack->data[++stack->top] = value;
+    stack->top++;             // Increment the top index
+    stack->data[stack->top] = value;  // Store the value at the new top index
 }
 
 int pop(Stack *stack) {
@@ -28,7 +29,9 @@ int pop(Stack *stack) {
         printf("Stack is empty. Cannot pop.\n");
         return -1; // Return an error value
     }
-    return stack->data[stack->top--];
+    int poppedValue = stack->data[stack->top];
+    stack->top--;
+    return poppedValue;
 }
 
 void display(const Stack *stack) {
